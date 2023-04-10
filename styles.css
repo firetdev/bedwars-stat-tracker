@@ -1,0 +1,19 @@
+body{
+	padding: 5%;
+	color: rgb(0, 255, 30);
+	background-color: rgb(30, 30, 30);
+	font-family: Sans-Serif;
+	font-weight: bolder;
+	font-size: 110%;
+}
+.floated{
+	float: right;
+	margin-right: 15%;
+}
+.stats{
+	font-size: 400%;
+	margin-right: 0%;
+}
+#stats1{
+	padding-left: 10%;
+}
