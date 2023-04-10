@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
+		<!--Form for adding new games-->
 		<div id="form" class="floated">
 			<h1>Add A Game</h1>
 			<p>Kills:</p>
@@ -17,12 +18,16 @@
 			<input id="won" type="text">
 			<button id="submit" onclick="addGame()">Add Game</button>
 		</div>
+		<!--Stats floated to the right-->
 		<div id="stats2" class="floated">
 			<h2>Total Beds</h2>
 			<h1 id="totalbeds" class="stats"></h1>
 			<h2>Winrate</h2>
 			<h1 id="winrate" class="stats"></h1>
+			<h2>Today's Score</h2>
+			<h1 id="score" class="stats"></h1>
 		</div>
+		<!--Stats on the left-->
 		<div id="stats1">
 			<h2>Total Kills</h2>
 			<h1 id="totalkills" class="stats"></h1>
@@ -31,6 +36,7 @@
 			<h2>Total Wins</h2>
 			<h1 id="totalwins" class="stats"></h1>
 		</div>
+		<!--Add script-->
 		<script src="index.js"></script>
 	</body>
 </html>
