@@ -17,7 +17,7 @@ if(parseInt(localStorage.getItem("games")) == null || parseInt(localStorage.getI
 		m: date.getMonth(),
 		y: date.getYear()
 	};
-	localStorage.setItem("lastUse", JSON.stringify(lastUse))
+	localStorage.setItem("lastUse", JSON.stringify(lastUse));
 }
 //Create array of games
 var games = [];
