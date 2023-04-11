@@ -5,8 +5,9 @@
 		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
-		<!--Form for adding new games-->
-		<div id="form" class="floated">
+		<!--Stuff floated to the right-->
+		<div id="right" class="floated">
+			<!--Form for adding games-->
 			<h1>Add A Game</h1>
 			<p>Kills:</p>
 			<input id="kills" type="text">
@@ -17,9 +18,21 @@
 			<p>Win:</p>
 			<input id="won" type="text">
 			<button id="submit" onclick="addGame()">Add Game</button>
+			<br><br>
+			<!--Seven-day chart-->
+			<h2 id="chart-header">7-Day Chart</h2>
+			<div id="chart">
+				<div id="chart1" class="chart-item"></div>
+				<div id="chart2" class="chart-item"></div>
+				<div id="chart3" class="chart-item"></div>
+				<div id="chart4" class="chart-item"></div>
+				<div id="chart5" class="chart-item"></div>
+				<div id="chart6" class="chart-item"></div>
+				<div id="chart7" class="chart-item"></div>
+			</div>
 		</div>
-		<!--Stats floated to the right-->
-		<div id="stats2" class="floated">
+		<!--Stuff in center-->
+		<div id="center" class="floated">
 			<h2>Total Beds</h2>
 			<h1 id="totalbeds" class="stats"></h1>
 			<h2>Winrate</h2>
@@ -27,8 +40,8 @@
 			<h2>Today's Score</h2>
 			<h1 id="score" class="stats"></h1>
 		</div>
-		<!--Stats on the left-->
-		<div id="stats1">
+		<!--Stuff on the left-->
+		<div id="left">
 			<h2>Total Kills</h2>
 			<h1 id="totalkills" class="stats"></h1>
 			<h2>Total Final Kills</h2>

@@ -71,6 +71,18 @@ document.getElementById("totalwins").innerText = totalwins;
 document.getElementById("totalbeds").innerText = totalbeds;
 document.getElementById("winrate").innerText = winrate;
 document.getElementById("score").innerText = days.g;
+//Update chart
+var bars = [];
+for(var i = 0; i < 7; i++){
+	bars.push(document.getElementById("chart" + (i + 1)));
+}
+bars[0].style.height = ((days.a * 0.8) + 5) + "px";
+bars[1].style.height = ((days.b * 0.8) + 5) + "px";
+bars[2].style.height = ((days.c * 0.8) + 5) + "px";
+bars[3].style.height = ((days.d * 0.8) + 5) + "px";
+bars[4].style.height = ((days.e * 0.8) + 5) + "px";
+bars[5].style.height = ((days.f * 0.8) + 5) + "px";
+bars[6].style.height = ((days.g * 0.8) + 5) + "px";
 //Add a new game
 function addGame(){
 	var game = {

@@ -1,6 +1,6 @@
 body{
 	padding: 5%;
-	color: rgb(0, 255, 30);
+	color: rgb(0, 255, 50);
 	background-color: rgb(30, 30, 30);
 	font-family: Sans-Serif;
 	font-weight: bolder;
@@ -14,6 +14,21 @@ body{
 	font-size: 400%;
 	margin-right: 0%;
 }
-#stats1{
+#left{
 	padding-left: 10%;
+}
+.chart-item{
+	background-color: rgb(0, 255, 0);
+	width: 30px;
+	height: 50px;
+	display: inline-block;
+	margin: 10px;
+	margin-left: 0px;
+	border-radius: 15%;
+}
+#chart{
+	padding-top: 8%;
+}
+#chart-header{
+	padding-top: 3%;
 }
