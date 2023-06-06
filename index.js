@@ -46,6 +46,7 @@ if(newUse.y > JSON.parse(localStorage.getItem("lastUse")).y || newUse.m > JSON.p
 	days.e = days.f;
 	days.f = days.g;
 	days.g = 0;
+	console.log("NEWDAY");
 }
 if(newUse.d > JSON.parse(localStorage.getItem("lastUse")).d && newUse.m == JSON.parse(localStorage.getItem("lastUse")).m){
 	days.a = days.b;
@@ -55,6 +56,7 @@ if(newUse.d > JSON.parse(localStorage.getItem("lastUse")).d && newUse.m == JSON.
 	days.e = days.f;
 	days.f = days.g;
 	days.g = 0;
+	console.log("NEWDAY");
 }
 for(var e = 0; e < games.length; e++){
 	totalkills += parseInt(games[e].kills);
@@ -99,7 +101,8 @@ function addGame(){
 	window.location = "";
 }
 //Update date
-window.addEventListener("beforeunload", function(event){
+function saveDate()
+{
 	var date = new Date();
 	var lastUse = {
 		d: date.getDate(),
@@ -107,4 +110,6 @@ window.addEventListener("beforeunload", function(event){
 		y: date.getYear()
 	};
 	localStorage.setItem("lastUse", JSON.stringify(lastUse));
-}, false);
+	window.setTimeout("saveDate()", 50);
+}
+saveDate();
