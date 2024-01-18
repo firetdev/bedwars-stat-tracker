@@ -1,5 +1,5 @@
 //Setup for new users
-if(parseInt(localStorage.getItem("games")) == null || parseInt(localStorage.getItem("games")) == "null" || isNaN(parseInt(localStorage.getItem("games")))){
+if (parseInt(localStorage.getItem("games")) == null || parseInt(localStorage.getItem("games")) == "null" || isNaN(parseInt(localStorage.getItem("games")))) {
 	localStorage.setItem("games", 0);
 	var days = {
 		a: 0,
@@ -21,7 +21,7 @@ if(parseInt(localStorage.getItem("games")) == null || parseInt(localStorage.getI
 }
 //Create array of games
 var games = [];
-for(var i = 0; i < parseInt(localStorage.getItem("games")); i++){
+for (var i = 0; i < parseInt(localStorage.getItem("games")); i++) {
 	games.push(JSON.parse(localStorage.getItem(i + 1)));
 }
 //Setup data
@@ -38,7 +38,7 @@ var newUse = {
 	m: date.getMonth(),
 	y: date.getYear()
 };
-if(newUse.y > JSON.parse(localStorage.getItem("lastUse")).y || newUse.m > JSON.parse(localStorage.getItem("lastUse")).m){
+if (newUse.y > JSON.parse(localStorage.getItem("lastUse")).y || newUse.m > JSON.parse(localStorage.getItem("lastUse")).m) {
 	days.a = days.b;
 	days.b = days.c;
 	days.c = days.d;
@@ -48,7 +48,7 @@ if(newUse.y > JSON.parse(localStorage.getItem("lastUse")).y || newUse.m > JSON.p
 	days.g = 0;
 	console.log("NEWDAY");
 }
-if(newUse.d > JSON.parse(localStorage.getItem("lastUse")).d && newUse.m == JSON.parse(localStorage.getItem("lastUse")).m){
+if (newUse.d > JSON.parse(localStorage.getItem("lastUse")).d && newUse.m == JSON.parse(localStorage.getItem("lastUse")).m) {
 	days.a = days.b;
 	days.b = days.c;
 	days.c = days.d;
@@ -58,7 +58,7 @@ if(newUse.d > JSON.parse(localStorage.getItem("lastUse")).d && newUse.m == JSON.
 	days.g = 0;
 	console.log("NEWDAY");
 }
-for(var e = 0; e < games.length; e++){
+for (var e = 0; e < games.length; e++) {
 	totalkills += parseInt(games[e].kills);
 	totalfinalkills += parseInt(games[e].finalkills);
 	totalwins += parseInt(games[e].win);
@@ -75,7 +75,7 @@ document.getElementById("winrate").innerText = winrate;
 document.getElementById("score").innerText = days.g;
 //Update chart
 var bars = [];
-for(var i = 0; i < 7; i++){
+for (var i = 0; i < 7; i++) {
 	bars.push(document.getElementById("chart" + (i + 1)));
 }
 bars[0].style.height = ((days.a * 0.8) + 5) + "px";
@@ -86,7 +86,7 @@ bars[4].style.height = ((days.e * 0.8) + 5) + "px";
 bars[5].style.height = ((days.f * 0.8) + 5) + "px";
 bars[6].style.height = ((days.g * 0.8) + 5) + "px";
 //Add a new game
-function addGame(){
+function addGame () {
 	var game = {
 		kills: parseInt(document.getElementById("kills").value),
 		finalkills: parseInt(document.getElementById("finalkills").value),
@@ -101,8 +101,7 @@ function addGame(){
 	window.location = "";
 }
 //Update date
-function saveDate()
-{
+function saveDate () {
 	var date = new Date();
 	var lastUse = {
 		d: date.getDate(),
