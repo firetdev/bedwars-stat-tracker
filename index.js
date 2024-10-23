@@ -1,4 +1,19 @@
 
+// Shift chart
+function shift(number, chartObj) {
+	for (var i = 0; i < number; i++) {
+		chartObj.a = chartObj.b;
+		chartObj.b = chartObj.c;
+		chartObj.c = chartObj.d;
+		chartObj.d = chartObj.e;
+		chartObj.e = chartObj.f;
+		chartObj.f = chartObj.g;
+		chartObj.g = 0;
+	}
+
+	return chartObj;
+}
+
 // Setup for new users
 if (parseInt(localStorage.getItem('games')) == null || parseInt(localStorage.getItem('games')) == 'null' || isNaN(parseInt(localStorage.getItem('games')))) {
 	localStorage.setItem('games', 0);
@@ -40,28 +55,12 @@ var date = new Date();
 var newUse = {
 	d: date.getDate(),
 	m: date.getMonth(),
-	y: date.getYear()
+	y: date.getYear() + 1
 };
-if (newUse.y > JSON.parse(localStorage.getItem('lastUse')).y || newUse.m > JSON.parse(localStorage.getItem('lastUse')).m) {
-	days.a = days.b;
-	days.b = days.c;
-	days.c = days.d;
-	days.d = days.e;
-	days.e = days.f;
-	days.f = days.g;
-	days.g = 0;
-	console.log('NEWDAY');
+if (newUse.y != JSON.parse(localStorage.getItem('lastUse')).y) {
+	// Continue
 }
-if (newUse.d > JSON.parse(localStorage.getItem('lastUse')).d && newUse.m == JSON.parse(localStorage.getItem('lastUse')).m) {
-	days.a = days.b;
-	days.b = days.c;
-	days.c = days.d;
-	days.d = days.e;
-	days.e = days.f;
-	days.f = days.g;
-	days.g = 0;
-	console.log('NEWDAY');
-}
+days = shift(newUse.d - JSON.parse(localStorage.getItem('lastUse')).d, days);
 for (var e = 0; e < games.length; e++) {
 	totalkills += parseInt(games[e].kills);
 	totalfinalkills += parseInt(games[e].finalkills);
