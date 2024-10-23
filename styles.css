@@ -24,7 +24,7 @@ body{
 	display: inline-block;
 	margin: 10px;
 	margin-left: 0px;
-	border-radius: 15%;
+	border-radius: 8px;
 }
 #chart{
 	padding-top: 8%;
