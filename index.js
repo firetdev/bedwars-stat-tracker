@@ -1,4 +1,10 @@
 
+/**
+ISSUES:
+
+Chart resets itself
+*/
+
 // Shift chart
 function shift(number, chartObj) {
 	for (let i = 0; i < number; i += 1) {
