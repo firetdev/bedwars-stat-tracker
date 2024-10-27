@@ -1,7 +1,7 @@
 
 // Shift chart
 function shift(number, chartObj) {
-	for (var i = 0; i < number; i++) {
+	for (let i = 0; i < number; i += 1) {
 		chartObj.a = chartObj.b;
 		chartObj.b = chartObj.c;
 		chartObj.c = chartObj.d;
@@ -10,14 +10,13 @@ function shift(number, chartObj) {
 		chartObj.f = chartObj.g;
 		chartObj.g = 0;
 	}
-
 	return chartObj;
 }
 
 // Setup for new users
 if (parseInt(localStorage.getItem('games')) == null || parseInt(localStorage.getItem('games')) == 'null' || isNaN(parseInt(localStorage.getItem('games')))) {
 	localStorage.setItem('games', 0);
-	var days = {
+	const days = {
 		a: 0,
 		b: 0,
 		c: 0,
@@ -27,8 +26,8 @@ if (parseInt(localStorage.getItem('games')) == null || parseInt(localStorage.get
 		g: 0
 	};
 	localStorage.setItem('days', JSON.stringify(days));
-	var date = new Date();
-	var lastUse = {
+	const date = new Date();
+	const lastUse = {
 		d: date.getDate(),
 		m: date.getMonth(),
 		y: date.getYear()
@@ -37,37 +36,57 @@ if (parseInt(localStorage.getItem('games')) == null || parseInt(localStorage.get
 }
 
 // Create array of games
-var games = [];
-for (var i = 0; i < parseInt(localStorage.getItem('games')); i++) {
+const games = [];
+for (let i = 0; i < parseInt(localStorage.getItem('games')); i += 1) {
 	games.push(JSON.parse(localStorage.getItem(i + 1)));
 }
 
 // Setup data
-var totalkills = 0;
-var totalfinalkills = 0;
-var totalwins = 0;
-var totalbeds = 0;
-var winrate;
-var days = JSON.parse(localStorage.getItem('days'));
-var date = new Date();
+let totalkills = 0;
+let totalfinalkills = 0;
+let totalwins = 0;
+let totalbeds = 0;
+let winrate;
+let days = JSON.parse(localStorage.getItem('days'));
+const date = new Date();
 
 // Checks if it's a new day
-var newUse = {
+const newUse = {
 	d: date.getDate(),
 	m: date.getMonth(),
-	y: date.getYear() + 1
+	y: date.getYear()
 };
-if (newUse.y != JSON.parse(localStorage.getItem('lastUse')).y) {
-	// Continue
+const lastUse = JSON.parse(localStorage.getItem('lastUse'));
+if (newUse.y - lastUse.y > 1 || newUse.m - lastUse.m > 1) {
+	days = shift(14, days);  // Reset days variable
 }
-days = shift(newUse.d - JSON.parse(localStorage.getItem('lastUse')).d, days);
-for (var e = 0; e < games.length; e++) {
+if (newUse.y - lastUse.y == 1) {
+	if (lastUse.m == 11) {
+		const daysDifferenceAllowed = 7 - newUse.d;
+		if (daysDifferenceAllowed > 0) {
+			const finalChartDay = 31 - daysDifferenceAllowed;
+			days = shift(7 - (lastUse.d - finalChartDay), days);
+		}
+	}
+}
+if (newUse.m - lastUse.m == 1) {
+	const lastMonthLength = new Date(newUse.y, newUse.m, 0).getDate();
+	const daysDifferenceAllowed = 7 - newUse.d;
+	if (daysDifferenceAllowed > 0) {
+		const finalChartDay = lastMonthLength - daysDifferenceAllowed;
+		days = shift(7 - (lastUse.d - finalChartDay), days);
+	}
+}
+if (newUse.y == lastUse.y && newUse.m == lastUse.m)
+	days = shift(newUse.d - lastUse.d, days);
+
+for (let e = 0; e < games.length; e += 1) {
 	totalkills += parseInt(games[e].kills);
 	totalfinalkills += parseInt(games[e].finalkills);
 	totalwins += parseInt(games[e].win);
 	totalbeds += parseInt(games[e].beds);
 }
-var winrate = totalwins / parseInt(localStorage.getItem('games'));
+winrate = totalwins / parseInt(localStorage.getItem('games'));
 winrate = Math.trunc(winrate * Math.pow(10, 2)) / Math.pow(10, 2);  // Truncates winrate
 
 // Update UI
@@ -79,8 +98,8 @@ document.getElementById('winrate').innerText = winrate;
 document.getElementById('score').innerText = days.g;
 
 // Update chart
-var bars = [];
-for (var i = 0; i < 7; i++) {
+const bars = [];
+for (let i = 0; i < 7; i += 1) {
 	bars.push(document.getElementById('chart' + (i + 1)));
 }
 bars[0].style.height = ((days.a * 0.8) + 5) + 'px';
@@ -93,7 +112,7 @@ bars[6].style.height = ((days.g * 0.8) + 5) + 'px';
 
 // Add a new game
 function addGame() {
-	var game = {
+	const game = {
 		kills: parseInt(document.getElementById('kills').value),
 		finalkills: parseInt(document.getElementById('finalkills').value),
 		win: parseInt(document.getElementById('won').value),
@@ -109,8 +128,8 @@ function addGame() {
 
 // Update date
 function saveDate() {
-	var date = new Date();
-	var lastUse = {
+	const date = new Date();
+	const lastUse = {
 		d: date.getDate(),
 		m: date.getMonth(),
 		y: date.getYear()
